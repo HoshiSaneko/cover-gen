@@ -7,12 +7,10 @@ import time
 import base64
 import requests
 from pathlib import Path
-from typing import Optional, Tuple
 from PIL import Image
 
 try:
     from google import genai
-    from google.genai import types
 except ImportError:
     genai = None
 
@@ -22,11 +20,11 @@ from src.utils.logger import logger
 def generate_blog_cover(image_prompt: str, md_title: str) -> str:
     """
     生成博客封面图
-    
+
     Args:
         image_prompt: 生图提示词
         md_title: 博客标题（用于生成文件名）
-        
+
     Returns:
         str: 保存的图片路径
     """
@@ -175,16 +173,10 @@ def _generate_qwen(prompt: str) -> bytes:
     if "wanx" in Config.IMAGE_MODEL:
          api_url = Config.QWEN_IMAGE_API_URL_V1
          headers["X-DashScope-Async"] = "enable" # Wanx v1 必须异步
-         # 使用 Wanx v1 模型的 Payload 结构
          payload = {
             "model": Config.IMAGE_MODEL,
-            "input": {
-                "prompt": prompt
-            },
-            "parameters": {
-                "size": "1280*720", # Wanx v1 支持 1280*720
-                "n": 1,
-            }
+            "input": {"prompt": prompt},
+            "parameters": {"size": "1280*720", "n": 1},
         }
     else:
         # Wan 2.1 / Wan 2.0 (同步调用)
@@ -197,10 +189,7 @@ def _generate_qwen(prompt: str) -> bytes:
                     "content": [{"text": prompt}]
                 }]
             },
-            "parameters": {
-                "size": "1024*768", # Wan 2.1 支持 1024*768
-                "n": 1,
-            }
+            "parameters": {"size": "1024*768", "n": 1},
         }
     
     # 1. 发送请求

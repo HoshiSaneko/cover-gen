@@ -64,8 +64,8 @@ class Config:
     BACKGROUND_COLOR = os.getenv("BACKGROUND_COLOR", "")
     # 额外提示词
     EXTRA_PROMPT = os.getenv("EXTRA_PROMPT", "")
-    # 反向提示词
-    NEGATIVE_PROMPT = "text, watermark, low quality, blurry, distorted, ugly, bad anatomy"
+    # 禁止的提示词（负向提示词，不希望出现在画面中的内容，逗号或空格分隔）
+    NEGATIVE_PROMPT = os.getenv("NEGATIVE_PROMPT", "text, watermark, low quality, blurry, distorted, ugly, bad anatomy").strip()
 
     # --- 输出设置 ---
     # 图片尺寸

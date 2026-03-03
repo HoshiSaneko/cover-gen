@@ -91,6 +91,7 @@ D:\cover-gen>python main.py example\example.md --extra-prompt minecraft
 | `--dark-mode` | 是否适配深色模式 | `--dark-mode true` |
 | `--ratio` | 内容主体占比 (0.1 - 0.9) | `--ratio 0.7` |
 | `--extra-prompt` | 强制追加的额外提示词 | `--extra-prompt "high quality"` |
+| `--negative-prompt` | 禁止的提示词（不希望出现在画面中的内容） | `--negative-prompt "人物面部, 血腥"` |
 
 ---
 

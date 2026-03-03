@@ -20,6 +20,7 @@ def main():
     parser.add_argument("--dark-mode", choices=["true", "false"], help="是否适配深色模式")
     parser.add_argument("--ratio", type=float, help="内容占比 (0.0~1.0)")
     parser.add_argument("--extra-prompt", help="额外提示词")
+    parser.add_argument("--negative-prompt", help="禁止的提示词（不希望出现在画面中的内容，如：人物面部, 血腥）")
     
     args = parser.parse_args()
 
@@ -73,7 +74,8 @@ def main():
             background_color=args.background,
             dark_mode_adaptive=dark_mode,
             content_ratio=args.ratio,
-            extra_prompt=args.extra_prompt
+            extra_prompt=args.extra_prompt,
+            negative_prompt=args.negative_prompt
         )
         
         # 4. 生成图片
